@@ -18,7 +18,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         transationManager.delegate = self
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func didTapAddTransaction(_ sender: UIButton) {
