@@ -9,13 +9,17 @@
 /* Begin PBXBuildFile section */
 		E157330E280738A500F58E0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157330D280738A500F58E0A /* AppDelegate.swift */; };
 		E1573310280738A500F58E0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157330F280738A500F58E0A /* SceneDelegate.swift */; };
-		E1573312280738A500F58E0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1573311280738A500F58E0A /* ViewController.swift */; };
+		E1573312280738A500F58E0A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1573311280738A500F58E0A /* MainViewController.swift */; };
 		E1573315280738A500F58E0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1573313280738A500F58E0A /* Main.storyboard */; };
 		E1573317280738A600F58E0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1573316280738A600F58E0A /* Assets.xcassets */; };
 		E157331A280738A600F58E0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1573318280738A600F58E0A /* LaunchScreen.storyboard */; };
 		E1573325280738A600F58E0A /* HamaniecTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1573324280738A600F58E0A /* HamaniecTests.swift */; };
 		E157332F280738A600F58E0A /* HamaniecUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157332E280738A600F58E0A /* HamaniecUITests.swift */; };
 		E1573331280738A600F58E0A /* HamaniecUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1573330280738A600F58E0A /* HamaniecUITestsLaunchTests.swift */; };
+		E1B7B41F28102154006930B3 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B41E28102154006930B3 /* TransactionManager.swift */; };
+		E1B7B422281026BC006930B3 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B420281026BC006930B3 /* AddTransactionViewController.swift */; };
+		E1B7B423281026BC006930B3 /* AddTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B7B421281026BC006930B3 /* AddTransactionViewController.xib */; };
+		E1B7B42528107C61006930B3 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B42428107C61006930B3 /* Transaction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +43,7 @@
 		E157330A280738A500F58E0A /* Hamaniec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hamaniec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E157330D280738A500F58E0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E157330F280738A500F58E0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E1573311280738A500F58E0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E1573311280738A500F58E0A /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E1573314280738A500F58E0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1573316280738A600F58E0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1573319280738A600F58E0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +53,10 @@
 		E157332A280738A600F58E0A /* HamaniecUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HamaniecUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E157332E280738A600F58E0A /* HamaniecUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamaniecUITests.swift; sourceTree = "<group>"; };
 		E1573330280738A600F58E0A /* HamaniecUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamaniecUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E1B7B41E28102154006930B3 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
+		E1B7B420281026BC006930B3 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
+		E1B7B421281026BC006930B3 /* AddTransactionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTransactionViewController.xib; sourceTree = "<group>"; };
+		E1B7B42428107C61006930B3 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +109,11 @@
 			children = (
 				E157330D280738A500F58E0A /* AppDelegate.swift */,
 				E157330F280738A500F58E0A /* SceneDelegate.swift */,
-				E1573311280738A500F58E0A /* ViewController.swift */,
+				E1573311280738A500F58E0A /* MainViewController.swift */,
+				E1B7B420281026BC006930B3 /* AddTransactionViewController.swift */,
+				E1B7B42428107C61006930B3 /* Transaction.swift */,
+				E1B7B421281026BC006930B3 /* AddTransactionViewController.xib */,
+				E1B7B41E28102154006930B3 /* TransactionManager.swift */,
 				E1573313280738A500F58E0A /* Main.storyboard */,
 				E1573316280738A600F58E0A /* Assets.xcassets */,
 				E1573318280738A600F58E0A /* LaunchScreen.storyboard */,
@@ -233,6 +245,7 @@
 			files = (
 				E157331A280738A600F58E0A /* LaunchScreen.storyboard in Resources */,
 				E1573317280738A600F58E0A /* Assets.xcassets in Resources */,
+				E1B7B423281026BC006930B3 /* AddTransactionViewController.xib in Resources */,
 				E1573315280738A500F58E0A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,7 +271,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1573312280738A500F58E0A /* ViewController.swift in Sources */,
+				E1B7B41F28102154006930B3 /* TransactionManager.swift in Sources */,
+				E1573312280738A500F58E0A /* MainViewController.swift in Sources */,
+				E1B7B42528107C61006930B3 /* Transaction.swift in Sources */,
+				E1B7B422281026BC006930B3 /* AddTransactionViewController.swift in Sources */,
 				E157330E280738A500F58E0A /* AppDelegate.swift in Sources */,
 				E1573310280738A500F58E0A /* SceneDelegate.swift in Sources */,
 			);

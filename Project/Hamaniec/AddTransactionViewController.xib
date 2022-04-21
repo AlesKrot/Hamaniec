@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddTransactionViewController" customModule="Hamaniec" customModuleProvider="target">
+            <connections>
+                <outlet property="transactionCategoryPickerView" destination="6nx-OK-BPz" id="HrU-hv-pep"/>
+                <outlet property="transactionTypeSegmentControl" destination="1nB-Nz-mkQ" id="i7s-c8-dlZ"/>
+                <outlet property="transactionValueTextField" destination="ysp-ZV-BeO" id="E6C-5u-H8t"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ysp-ZV-BeO">
+                    <rect key="frame" x="32" y="144" width="350" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="13c-q7-SxO"/>
+                        <constraint firstAttribute="width" constant="350" id="bir-Vi-H6B"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                </textField>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="1nB-Nz-mkQ">
+                    <rect key="frame" x="32" y="84" width="350" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="350" id="1zK-2t-Ppa"/>
+                        <constraint firstAttribute="height" constant="40" id="Qsh-sH-m8h"/>
+                    </constraints>
+                    <segments>
+                        <segment title="Spent"/>
+                        <segment title="Income"/>
+                    </segments>
+                </segmentedControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ex-9I-zsN">
+                    <rect key="frame" x="32" y="782" width="350" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="OA8-2P-jSt"/>
+                        <constraint firstAttribute="width" constant="350" id="y7C-CJ-Raw"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Confirm">
+                        <fontDescription key="titleFontDescription" type="system" pointSize="20"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="didTapConfirmButton:" destination="-1" eventType="touchUpInside" id="MpM-eR-j71"/>
+                    </connections>
+                </button>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6nx-OK-BPz">
+                    <rect key="frame" x="32" y="204" width="350" height="216"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="350" id="1Zz-hJ-g9S"/>
+                    </constraints>
+                </pickerView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="6nx-OK-BPz" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="9zy-ax-SZN"/>
+                <constraint firstItem="6nx-OK-BPz" firstAttribute="top" secondItem="ysp-ZV-BeO" secondAttribute="bottom" constant="20" id="R8c-5o-lSe"/>
+                <constraint firstItem="3ex-9I-zsN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Xhs-q0-jfF"/>
+                <constraint firstItem="3ex-9I-zsN" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-40" id="a1W-fq-wDl"/>
+                <constraint firstItem="ysp-ZV-BeO" firstAttribute="top" secondItem="1nB-Nz-mkQ" secondAttribute="bottom" constant="20" id="cft-Au-7tL"/>
+                <constraint firstItem="1nB-Nz-mkQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="40" id="evB-2u-vuL"/>
+                <constraint firstItem="ysp-ZV-BeO" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="fnP-MT-C9Z"/>
+                <constraint firstItem="1nB-Nz-mkQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="nx7-xk-HK9"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="81"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
