@@ -17,9 +17,15 @@
 		E157332F280738A600F58E0A /* HamaniecUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157332E280738A600F58E0A /* HamaniecUITests.swift */; };
 		E1573331280738A600F58E0A /* HamaniecUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1573330280738A600F58E0A /* HamaniecUITestsLaunchTests.swift */; };
 		E1B7B41F28102154006930B3 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B41E28102154006930B3 /* TransactionManager.swift */; };
-		E1B7B422281026BC006930B3 /* AddTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B420281026BC006930B3 /* AddTransactionViewController.swift */; };
-		E1B7B423281026BC006930B3 /* AddTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B7B421281026BC006930B3 /* AddTransactionViewController.xib */; };
+		E1B7B422281026BC006930B3 /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B420281026BC006930B3 /* NewTransactionViewController.swift */; };
+		E1B7B423281026BC006930B3 /* NewTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B7B421281026BC006930B3 /* NewTransactionViewController.xib */; };
 		E1B7B42528107C61006930B3 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B42428107C61006930B3 /* Transaction.swift */; };
+		E1DFCC59281498E5009293BD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFCC58281498E5009293BD /* Category.swift */; };
+		E1DFCC5D2814A5E6009293BD /* LastTransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFCC5B2814A5E6009293BD /* LastTransactionsTableViewCell.swift */; };
+		E1DFCC5E2814A5E6009293BD /* LastTransactionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DFCC5C2814A5E6009293BD /* LastTransactionsTableViewCell.xib */; };
+		E1DFCC602814AC16009293BD /* ViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFCC5F2814AC16009293BD /* ViewConfig.swift */; };
+		E1DFCC67281711DF009293BD /* EditTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFCC65281711DF009293BD /* EditTransactionViewController.swift */; };
+		E1DFCC68281711DF009293BD /* EditTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DFCC66281711DF009293BD /* EditTransactionViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +60,15 @@
 		E157332E280738A600F58E0A /* HamaniecUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamaniecUITests.swift; sourceTree = "<group>"; };
 		E1573330280738A600F58E0A /* HamaniecUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HamaniecUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E1B7B41E28102154006930B3 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
-		E1B7B420281026BC006930B3 /* AddTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionViewController.swift; sourceTree = "<group>"; };
-		E1B7B421281026BC006930B3 /* AddTransactionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTransactionViewController.xib; sourceTree = "<group>"; };
+		E1B7B420281026BC006930B3 /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
+		E1B7B421281026BC006930B3 /* NewTransactionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTransactionViewController.xib; sourceTree = "<group>"; };
 		E1B7B42428107C61006930B3 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
+		E1DFCC58281498E5009293BD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E1DFCC5B2814A5E6009293BD /* LastTransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastTransactionsTableViewCell.swift; sourceTree = "<group>"; };
+		E1DFCC5C2814A5E6009293BD /* LastTransactionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LastTransactionsTableViewCell.xib; sourceTree = "<group>"; };
+		E1DFCC5F2814AC16009293BD /* ViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewConfig.swift; sourceTree = "<group>"; };
+		E1DFCC65281711DF009293BD /* EditTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTransactionViewController.swift; sourceTree = "<group>"; };
+		E1DFCC66281711DF009293BD /* EditTransactionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTransactionViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +122,14 @@
 				E157330D280738A500F58E0A /* AppDelegate.swift */,
 				E157330F280738A500F58E0A /* SceneDelegate.swift */,
 				E1573311280738A500F58E0A /* MainViewController.swift */,
-				E1B7B420281026BC006930B3 /* AddTransactionViewController.swift */,
-				E1B7B421281026BC006930B3 /* AddTransactionViewController.xib */,
-				E1B7B42428107C61006930B3 /* Transaction.swift */,
-				E1B7B41E28102154006930B3 /* TransactionManager.swift */,
+				E1DFCC5F2814AC16009293BD /* ViewConfig.swift */,
+				E1B7B420281026BC006930B3 /* NewTransactionViewController.swift */,
+				E1B7B421281026BC006930B3 /* NewTransactionViewController.xib */,
+				E1DFCC5B2814A5E6009293BD /* LastTransactionsTableViewCell.swift */,
+				E1DFCC5C2814A5E6009293BD /* LastTransactionsTableViewCell.xib */,
+				E1DFCC65281711DF009293BD /* EditTransactionViewController.swift */,
+				E1DFCC66281711DF009293BD /* EditTransactionViewController.xib */,
+				E1DFCC5A28149FEE009293BD /* Model */,
 				E1573313280738A500F58E0A /* Main.storyboard */,
 				E1573316280738A600F58E0A /* Assets.xcassets */,
 				E1573318280738A600F58E0A /* LaunchScreen.storyboard */,
@@ -137,6 +153,16 @@
 				E1573330280738A600F58E0A /* HamaniecUITestsLaunchTests.swift */,
 			);
 			path = HamaniecUITests;
+			sourceTree = "<group>";
+		};
+		E1DFCC5A28149FEE009293BD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E1B7B42428107C61006930B3 /* Transaction.swift */,
+				E1DFCC58281498E5009293BD /* Category.swift */,
+				E1B7B41E28102154006930B3 /* TransactionManager.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,9 +269,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1DFCC68281711DF009293BD /* EditTransactionViewController.xib in Resources */,
 				E157331A280738A600F58E0A /* LaunchScreen.storyboard in Resources */,
+				E1DFCC5E2814A5E6009293BD /* LastTransactionsTableViewCell.xib in Resources */,
 				E1573317280738A600F58E0A /* Assets.xcassets in Resources */,
-				E1B7B423281026BC006930B3 /* AddTransactionViewController.xib in Resources */,
+				E1B7B423281026BC006930B3 /* NewTransactionViewController.xib in Resources */,
 				E1573315280738A500F58E0A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,9 +302,13 @@
 				E1B7B41F28102154006930B3 /* TransactionManager.swift in Sources */,
 				E1573312280738A500F58E0A /* MainViewController.swift in Sources */,
 				E1B7B42528107C61006930B3 /* Transaction.swift in Sources */,
-				E1B7B422281026BC006930B3 /* AddTransactionViewController.swift in Sources */,
+				E1B7B422281026BC006930B3 /* NewTransactionViewController.swift in Sources */,
 				E157330E280738A500F58E0A /* AppDelegate.swift in Sources */,
 				E1573310280738A500F58E0A /* SceneDelegate.swift in Sources */,
+				E1DFCC602814AC16009293BD /* ViewConfig.swift in Sources */,
+				E1DFCC5D2814A5E6009293BD /* LastTransactionsTableViewCell.swift in Sources */,
+				E1DFCC59281498E5009293BD /* Category.swift in Sources */,
+				E1DFCC67281711DF009293BD /* EditTransactionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

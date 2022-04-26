@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="MCc-bx-a5c">
-                                <rect key="frame" x="113" y="396" width="188" height="104"/>
+                                <rect key="frame" x="113" y="88" width="188" height="104"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total money:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bzc-XC-MxE">
                                         <rect key="frame" x="0.0" y="0.0" width="188" height="42"/>
@@ -34,7 +34,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="pFQ-YL-RfK">
-                                <rect key="frame" x="139.5" y="575" width="135" height="81"/>
+                                <rect key="frame" x="139.5" y="227" width="135" height="81"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total spents:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-PS-3aP">
                                         <rect key="frame" x="0.0" y="0.0" width="135" height="30"/>
@@ -63,29 +63,40 @@
                                     <action selector="didTapAddTransaction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XJ7-ju-L2L"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Udi-Yg-XxQ">
+                                <rect key="frame" x="0.0" y="343" width="414" height="280"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="280" id="WIO-YX-Ead"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="BZK-Iq-RrB" secondAttribute="trailing" constant="20" id="22I-gF-OYQ"/>
-                            <constraint firstItem="MCc-bx-a5c" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="5Lh-9C-ePA"/>
+                            <constraint firstItem="MCc-bx-a5c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="6G3-Bb-VvZ"/>
                             <constraint firstItem="BZK-Iq-RrB" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-40" id="7Oj-oC-V9L"/>
-                            <constraint firstItem="pFQ-YL-RfK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="FBS-0I-DXs"/>
+                            <constraint firstItem="pFQ-YL-RfK" firstAttribute="top" secondItem="MCc-bx-a5c" secondAttribute="bottom" constant="35" id="7eG-qk-mrV"/>
+                            <constraint firstItem="MCc-bx-a5c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8vY-OE-tgS"/>
+                            <constraint firstItem="Udi-Yg-XxQ" firstAttribute="top" secondItem="pFQ-YL-RfK" secondAttribute="bottom" constant="35" id="FXT-eH-hXF"/>
                             <constraint firstItem="BZK-Iq-RrB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="Koz-1U-y9m"/>
                             <constraint firstItem="BZK-Iq-RrB" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="W9t-5r-NQM"/>
-                            <constraint firstItem="pFQ-YL-RfK" firstAttribute="top" secondItem="MCc-bx-a5c" secondAttribute="bottom" constant="75" id="t7G-3b-0u5"/>
-                            <constraint firstItem="MCc-bx-a5c" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vwi-MU-YrY"/>
+                            <constraint firstItem="Udi-Yg-XxQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WBX-FC-Psy"/>
+                            <constraint firstItem="pFQ-YL-RfK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c9s-TD-bke"/>
+                            <constraint firstItem="Udi-Yg-XxQ" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yZO-kG-m9W"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Ptl-I6-9ia"/>
                     <connections>
+                        <outlet property="lastTransactionsTableView" destination="Udi-Yg-XxQ" id="mtM-bY-oeo"/>
                         <outlet property="totalMoneyAmountLabel" destination="a8w-tv-5yS" id="sja-Da-o1p"/>
                         <outlet property="totalSpentsAmountLabel" destination="keG-T0-zMZ" id="YNk-TT-30K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="705.79710144927537" y="83.705357142857139"/>
+            <point key="canvasLocation" x="704.34782608695662" y="83.705357142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cco-ZC-wlh">
