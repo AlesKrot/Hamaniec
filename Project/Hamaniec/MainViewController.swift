@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         transationManager.delegate = self
         lastTransactionsTableView.separatorStyle = .none
+        transationManager.updateTotalFunds()
     }
     
     @IBAction func didTapAddTransaction(_ sender: UIButton) {
@@ -37,11 +38,23 @@ class MainViewController: UIViewController {
 
 extension MainViewController: TransactionManagerDelegate {
     func didUpdateTotal(funds: Float) {
-        totalMoneyAmountLabel.text = "\(funds)"
+        let fundsToString = String(format:"%.2f", funds)
+        switch funds {
+        case 0.01...:
+            totalMoneyAmountLabel.text = "+\(fundsToString) BYN"
+            totalMoneyAmountLabel.textColor = .green
+        case 0:
+            totalMoneyAmountLabel.text = "\(fundsToString) BYN"
+            totalMoneyAmountLabel.textColor = .black
+        default:
+            totalMoneyAmountLabel.text = "\(fundsToString) BYN"
+            totalMoneyAmountLabel.textColor = .red
+        }
     }
-    
+
     func didUpdateSpent(funds: Float) {
-        totalSpentsAmountLabel.text = "\(funds)"
+        let fundsToString = String(format:"%.2f", funds)
+        totalSpentsAmountLabel.text = "-\(fundsToString) BYN"
     }
 }
 
@@ -115,6 +128,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
             self.transationManager.transactions.remove(at: indexPath.row)
             allertController.dismiss(animated: true, completion: nil)
             tableView.deleteRows(at: [indexPath], with: .fade)
+            self.transationManager.updateTotalFunds()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
@@ -141,10 +155,6 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 80
     }
-    
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        return "Last transactions"
-//    }
 }
 
 extension MainViewController: NewTransactionViewContollerDelegate {
@@ -154,6 +164,7 @@ extension MainViewController: NewTransactionViewContollerDelegate {
         guard let index = transationManager.transactions.firstIndex(of: transaction) else { return }
         let indexPath = IndexPath(row: index, section: 0)
         lastTransactionsTableView.insertRows(at: [indexPath], with: .fade)
+        transationManager.updateTotalFunds()
     }
 }
 
@@ -162,5 +173,6 @@ extension MainViewController: EditTransactionViewControllerDelegate {
         transationManager.edit(oldTransaction: didRemove, newTransaction: didCreate)
         transationManager.transactions.sort(by: { $0.date > $1.date })
         lastTransactionsTableView.reloadData()
+        transationManager.updateTotalFunds()
     }
 }

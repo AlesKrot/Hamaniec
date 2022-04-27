@@ -8,8 +8,9 @@
 import UIKit
 
 protocol AddTransactionHandler: AnyObject {
-    func add(income: Float)
-    func add(spent: Float) throws
+//    func add(income: Float)
+//    func add(spent: Float) throws
+    func updateTotalFunds()
 }
 
 protocol NewTransactionViewContollerDelegate: AnyObject {
@@ -21,6 +22,8 @@ class NewTransactionViewController: UIViewController {
     @IBOutlet weak var newTransactionTypeSegmentControl: UISegmentedControl!
     @IBOutlet weak var newTransactionCategoryTextField: UITextField!
     @IBOutlet weak var newTransactionDateTextField: UITextField!
+    @IBOutlet weak var confirmButton: UIButton!
+    
     private let categoryPicker = UIPickerView()
     private var categories = CategoriesList()
     private let datePicker = UIDatePicker()
@@ -44,10 +47,13 @@ class NewTransactionViewController: UIViewController {
         datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .wheels
         addButtonDoneToToolbar()
+        addCategoryButtonToToolbar()
         
         insertDateNow(to: newTransactionDateTextField)
         
         datePicker.addTarget(self, action: #selector(onDatePickerValueChanged(sender:)), for: .valueChanged)
+        
+        confirmButton.isEnabled = false
     }
     
     func insertDateNow(to textField: UITextField) {
@@ -57,6 +63,39 @@ class NewTransactionViewController: UIViewController {
         dateFormatter.dateFormat = "dd.MM.yy, HH:mm"
         let dateString = dateFormatter.string(from: date)
         textField.text = dateString
+    }
+    
+    func addCategoryButtonToToolbar() {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAction))
+        toolbar.setItems([add], animated: false)
+        newTransactionCategoryTextField.inputAccessoryView = toolbar
+    }
+    
+    @objc func addAction() {
+        alertAddCategory()
+    }
+    
+    func alertAddCategory() {
+        let alert = UIAlertController(title: "Add new category", message: "Write new category in text field", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Add", style: .default) { _ in
+            let textField = alert.textFields![0] as UITextField
+            
+            guard let text = textField.text else { return }
+            let newCategory = Category(name: text)
+            self.categories.add(category: newCategory)
+            self.newTransactionCategoryTextField.resignFirstResponder()
+        }
+        alert.addTextField { textField in
+            textField.textColor = .black
+        }
+        alert.addAction(action)
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     func addButtonDoneToToolbar() {
@@ -92,11 +131,10 @@ class NewTransactionViewController: UIViewController {
               let transactionCategory = newTransactionCategoryTextField.text,
               let transactionDate = selectedDate else { return }
         
-        let transaction = Transaction(type: transactionType, value: abs(transactionValue), category: transactionCategory, date: transactionDate)
+        let transaction = Transaction(type: transactionType, value: transactionValue, category: transactionCategory, date: transactionDate)
         dismiss(animated: true, completion: {
             self.newTransactionDelegate?.newTransactionViewController(self, didCreate: transaction)
         })
-        
 //        do {
 //            try handleFundsTextField(text: newTransactionValueTextField?.text)
 //            dismiss(animated: true)
@@ -156,5 +194,13 @@ extension NewTransactionViewController: UITextFieldDelegate {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if !(newTransactionValueTextField.text?.isEmpty ?? false) && !(newTransactionCategoryTextField.text?.isEmpty ?? false) && !(newTransactionDateTextField.text?.isEmpty ?? false) {
+            confirmButton.isEnabled = true
+        } else {
+            confirmButton.isEnabled = false
+        }
     }
 }

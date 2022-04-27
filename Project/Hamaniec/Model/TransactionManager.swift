@@ -40,17 +40,30 @@ class TransactionManager: AddTransactionHandler {
         save(transaction: transaction3)
     }
     
-    func add(income: Float) {
-        totalFunds += income
-    }
+//    func add(income: Float) {
+//        totalFunds += income
+//    }
+//
+//    func add(spent: Float) throws {
+//        if !isDebtEnabled && totalFunds < spent { throw TransactionManagerError.insufficientFunds }
+//
+//        if isDebtEnabled && (totalFunds - spent) < creditLimit  { throw TransactionManagerError.insufficientCreditFunds }
+//
+//        totalFunds -= spent
+//        totalSpentFunds += spent
+//    }
     
-    func add(spent: Float) throws {
-        if !isDebtEnabled && totalFunds < spent { throw TransactionManagerError.insufficientFunds }
-
-        if isDebtEnabled && (totalFunds - spent) < creditLimit  { throw TransactionManagerError.insufficientCreditFunds }
+    func updateTotalFunds() {
+        let totalSpentTransactions = transactions.filter { $0.type == 0 }
+        let totalIncomeTransactions = transactions.filter { $0.type == 1 }
+        let totalSpentTransactionsValue = totalSpentTransactions.map { $0.value }
+        let totalIncomeTransactionsValue = totalIncomeTransactions.map { $0.value }
         
-        totalFunds -= spent
-        totalSpentFunds += spent
+        totalSpentFunds = totalSpentTransactionsValue.reduce(0, +)
+        let totalIncomeAmount = totalIncomeTransactionsValue.reduce(0, +)
+        
+        totalFunds = totalIncomeAmount - totalSpentFunds
+//        let totalMoneyAmountString = String(format:"%.2f", totalFunds)
     }
     
     func save(transaction: Transaction) {

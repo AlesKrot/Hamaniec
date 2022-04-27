@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewTransactionViewController" customModule="Hamaniec" customModuleProvider="target">
             <connections>
+                <outlet property="confirmButton" destination="3ex-9I-zsN" id="l05-1l-mIj"/>
                 <outlet property="newTransactionCategoryTextField" destination="dFr-QY-hb5" id="Vzy-eO-l1s"/>
                 <outlet property="newTransactionDateTextField" destination="MFS-aA-wZz" id="5La-O1-ZZR"/>
                 <outlet property="newTransactionTypeSegmentControl" destination="1nB-Nz-mkQ" id="i7s-c8-dlZ"/>
