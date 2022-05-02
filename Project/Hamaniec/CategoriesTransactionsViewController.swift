@@ -8,8 +8,8 @@
 import UIKit
 
 protocol CategoriesTransactionViewControllerDelegate: AnyObject {
-    func addCategory(category: Category)
-    func removeCategory(at index: Int)
+    func categoriesTransactionViewController(_ controller: CategoriesTransactionsViewController, add category: Category)
+    func categoriesTransactionViewController(_ controller: CategoriesTransactionsViewController,removeCategoryAt index: Int)
 }
 
 class CategoriesTransactionsViewController: UIViewController {
@@ -50,9 +50,9 @@ class CategoriesTransactionsViewController: UIViewController {
             let textField = alert.textFields![0] as UITextField
             guard let text = textField.text else { return }
             let newCategory = Category(name: text)
-            self.dismiss(animated: true, completion: { self.delegate?.addCategory(category: newCategory)
+            self.dismiss(animated: true, completion: {
+                self.delegate?.categoriesTransactionViewController(self, add: newCategory)
             })
-//            self.delegate?.addCategory(category: newCategory)
             textField.resignFirstResponder()
             self.categoriesTableView.reloadData()
         }
@@ -98,7 +98,7 @@ extension CategoriesTransactionsViewController: UITableViewDelegate, UITableView
         let allertController = UIAlertController(title: "Remove category", message: "Are you sure?", preferredStyle: .alert)
         
         let deleteAction = UIAlertAction(title: "Remove", style: .destructive) { _ in
-            self.delegate?.removeCategory(at: indexPath.row)
+            self.delegate?.categoriesTransactionViewController(self, removeCategoryAt: indexPath.row)
             allertController.dismiss(animated: true, completion: nil)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }

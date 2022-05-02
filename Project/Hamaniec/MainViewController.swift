@@ -219,13 +219,15 @@ extension MainViewController: EditTransactionViewControllerDelegate {
 }
 
 extension MainViewController: CategoriesTransactionViewControllerDelegate {
-    func addCategory(category: Category) {
+    func categoriesTransactionViewController(_ controller: CategoriesTransactionsViewController, add category: Category) {
         categoriesHandlerDelegate?.add(category: category)
+        controller.containerForCategories = categoryManager.container
         lastTransactionsTableView.reloadData()
     }
     
-    func removeCategory(at index: Int) {
+    func categoriesTransactionViewController(_ controller: CategoriesTransactionsViewController, removeCategoryAt index: Int) {
         categoriesHandlerDelegate?.remove(category: index)
+        controller.containerForCategories = categoryManager.container
         lastTransactionsTableView.reloadData()
     }
 }
