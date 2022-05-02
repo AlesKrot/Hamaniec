@@ -24,7 +24,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="SqI-ff-qrV">
-                    <rect key="frame" x="30" y="84" width="350" height="41"/>
+                    <rect key="frame" x="30" y="84" width="354" height="41"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Pcn-bC-N0j"/>
                         <constraint firstAttribute="width" constant="350" id="iRT-e6-BDv"/>
@@ -36,7 +36,7 @@
                     </segments>
                 </segmentedControl>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4Y-OW-mbm">
-                    <rect key="frame" x="30" y="816" width="350" height="40"/>
+                    <rect key="frame" x="30" y="344" width="354" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="vRt-1B-QF2"/>
                     </constraints>
@@ -70,7 +70,7 @@
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="42" translatesAutoresizingMaskIntoConstraints="NO" id="kOv-EI-h11">
-                    <rect key="frame" x="30" y="214" width="350" height="40"/>
+                    <rect key="frame" x="30" y="214" width="354" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gVs-rF-vNt">
                             <rect key="frame" x="0.0" y="0.0" width="70.5" height="40"/>
@@ -79,7 +79,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2gQ-IH-Jbc">
-                            <rect key="frame" x="112.5" y="0.0" width="237.5" height="40"/>
+                            <rect key="frame" x="112.5" y="0.0" width="241.5" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -91,7 +91,7 @@
                     </constraints>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="69" translatesAutoresizingMaskIntoConstraints="NO" id="y8T-PB-ghN">
-                    <rect key="frame" x="30" y="279" width="350" height="40"/>
+                    <rect key="frame" x="30" y="279" width="354" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljX-v8-Zb2">
                             <rect key="frame" x="0.0" y="0.0" width="40.5" height="40"/>
@@ -100,7 +100,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHg-rL-gon">
-                            <rect key="frame" x="109.5" y="0.0" width="240.5" height="40"/>
+                            <rect key="frame" x="109.5" y="0.0" width="244.5" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
@@ -128,7 +128,6 @@
                 <constraint firstItem="SqI-ff-qrV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="OIe-s5-dMD"/>
                 <constraint firstItem="kOv-EI-h11" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Qgi-PF-HcZ"/>
                 <constraint firstItem="y8T-PB-ghN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="U3q-pM-fpm"/>
-                <constraint firstAttribute="bottom" secondItem="H4Y-OW-mbm" secondAttribute="bottom" constant="40" id="Vhg-0l-rJ3"/>
                 <constraint firstItem="SqI-ff-qrV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZdK-CN-S6N"/>
                 <constraint firstItem="cxT-Zc-WPQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="c6z-Kj-6IR"/>
                 <constraint firstAttribute="trailing" secondItem="H4Y-OW-mbm" secondAttribute="trailing" constant="30" id="ddD-ef-Rfg"/>
@@ -136,6 +135,7 @@
                 <constraint firstItem="cxT-Zc-WPQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="30" id="hvb-tS-Kd1"/>
                 <constraint firstItem="y8T-PB-ghN" firstAttribute="top" secondItem="kOv-EI-h11" secondAttribute="bottom" constant="25" id="lIC-03-9OX"/>
                 <constraint firstItem="y8T-PB-ghN" firstAttribute="top" secondItem="kOv-EI-h11" secondAttribute="bottom" constant="25" id="ns8-Hv-V2j"/>
+                <constraint firstItem="H4Y-OW-mbm" firstAttribute="top" secondItem="y8T-PB-ghN" secondAttribute="bottom" constant="25" id="s5o-0J-01c"/>
                 <constraint firstItem="cxT-Zc-WPQ" firstAttribute="top" secondItem="SqI-ff-qrV" secondAttribute="bottom" constant="25" id="zLC-qC-hOa"/>
             </constraints>
             <point key="canvasLocation" x="139" y="81"/>

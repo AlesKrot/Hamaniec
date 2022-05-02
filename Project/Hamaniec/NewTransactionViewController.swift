@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol AddTransactionHandler: AnyObject {
-//    func add(income: Float)
-//    func add(spent: Float) throws
-    func updateTotalFunds()
-}
-
 protocol NewTransactionViewContollerDelegate: AnyObject {
     func newTransactionViewController(_ controller: NewTransactionViewController, didCreate transaction: Transaction)
 }
@@ -25,12 +19,11 @@ class NewTransactionViewController: UIViewController {
     @IBOutlet weak var confirmButton: UIButton!
     
     private let categoryPicker = UIPickerView()
-    private var categories = CategoriesList()
     private let datePicker = UIDatePicker()
     private var selectedDate: Date?
     
-    weak var transactionHandler: AddTransactionHandler?
-    weak var newTransactionDelegate: NewTransactionViewContollerDelegate?
+    var containerForCategories: [Category]?
+    weak var delegate: NewTransactionViewContollerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +40,6 @@ class NewTransactionViewController: UIViewController {
         datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .wheels
         addButtonDoneToToolbar()
-        addCategoryButtonToToolbar()
         
         insertDateNow(to: newTransactionDateTextField)
         
@@ -63,39 +55,6 @@ class NewTransactionViewController: UIViewController {
         dateFormatter.dateFormat = "dd.MM.yy, HH:mm"
         let dateString = dateFormatter.string(from: date)
         textField.text = dateString
-    }
-    
-    func addCategoryButtonToToolbar() {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAction))
-        toolbar.setItems([add], animated: false)
-        newTransactionCategoryTextField.inputAccessoryView = toolbar
-    }
-    
-    @objc func addAction() {
-        alertAddCategory()
-    }
-    
-    func alertAddCategory() {
-        let alert = UIAlertController(title: "Add new category", message: "Write new category in text field", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add", style: .default) { _ in
-            let textField = alert.textFields![0] as UITextField
-            
-            guard let text = textField.text else { return }
-            let newCategory = Category(name: text)
-            self.categories.add(category: newCategory)
-            self.newTransactionCategoryTextField.resignFirstResponder()
-        }
-        alert.addTextField { textField in
-            textField.textColor = .black
-        }
-        alert.addAction(action)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(cancel)
-        
-        self.present(alert, animated: true, completion: nil)
     }
     
     func addButtonDoneToToolbar() {
@@ -119,12 +78,6 @@ class NewTransactionViewController: UIViewController {
         newTransactionDateTextField.text = dateString
     }
     
-//    func handleFundsTextField(text: String?) throws {
-//        guard let funds = Int(text ?? "") else { throw NewTransactionControllerError.wrongValue }
-//        let isIncome = newTransactionTypeSegmentControl?.selectedSegmentIndex == 1
-//        isIncome ? transactionHandler?.add(income: funds) : try transactionHandler?.add(spent: funds)
-//    }
-    
     @IBAction func didTapConfirmButton(_ sender: UIButton) {
         guard let transactionType = newTransactionTypeSegmentControl?.selectedSegmentIndex,
               let transactionValue = Float(newTransactionValueTextField.text ?? ""),
@@ -133,7 +86,7 @@ class NewTransactionViewController: UIViewController {
         
         let transaction = Transaction(type: transactionType, value: transactionValue, category: transactionCategory, date: transactionDate)
         dismiss(animated: true, completion: {
-            self.newTransactionDelegate?.newTransactionViewController(self, didCreate: transaction)
+            self.delegate?.newTransactionViewController(self, didCreate: transaction)
         })
 //        do {
 //            try handleFundsTextField(text: newTransactionValueTextField?.text)
@@ -151,17 +104,6 @@ class NewTransactionViewController: UIViewController {
 //            }
 //        }
     }
-    
-    func showAlert(with title: String, body: String) {
-        let alertVC = UIAlertController(
-            title: title,
-            message: body,
-            preferredStyle: .alert)
-        present(alertVC, animated: true, completion: nil)
-        
-        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
-        alertVC.addAction(action)
-    }
 }
 
 //enum NewTransactionControllerError: Error {
@@ -174,15 +116,18 @@ extension NewTransactionViewController: UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categories.container.count
+        guard let categories = containerForCategories else { return 0 }
+        return categories.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories.container[row].name
+        guard let categories = containerForCategories else { return "N/A category" }
+        return categories[row].name
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        newTransactionCategoryTextField.text = categories.container[row].name
+        guard let categories = containerForCategories else { return }
+        newTransactionCategoryTextField.text = categories[row].name
     }
 }
 

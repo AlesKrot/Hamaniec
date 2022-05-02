@@ -19,11 +19,10 @@ class EditTransactionViewController: UIViewController {
     @IBOutlet weak var editButton: UIButton!
     
     var currentTransaction: Transaction?
-    weak var transactionHandler: AddTransactionHandler?
-    weak var editTransactionDelegate: EditTransactionViewControllerDelegate?
+    weak var delegate: EditTransactionViewControllerDelegate?
+    var containerForCategories: [Category]?
     
     private let categoryPicker = UIPickerView()
-    private var categories = CategoriesList()
     private let datePicker = UIDatePicker()
     private var selectedDate: Date?
     
@@ -43,43 +42,10 @@ class EditTransactionViewController: UIViewController {
         datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .wheels
         addButtonDoneToToolbar()
-        addCategoryButtonToToolbar()
+
         selectedDate = currentTransaction.date
         datePicker.addTarget(self, action: #selector(onDatePickerValueChanged(sender:)), for: .valueChanged)
         editButton.isEnabled = false
-    }
-    
-    func addCategoryButtonToToolbar() {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        let add = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addAction))
-        toolbar.setItems([add], animated: false)
-        editTransactionCategoryTextField.inputAccessoryView = toolbar
-    }
-    
-    @objc func addAction() {
-        alertAddCategory()
-    }
-    
-    func alertAddCategory() {
-        let alert = UIAlertController(title: "Add new category", message: "Write new category in text field", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Add", style: .default) { _ in
-            let textField = alert.textFields![0] as UITextField
-            
-            guard let text = textField.text else { return }
-            let newCategory = Category(name: text)
-            self.categories.add(category: newCategory)
-            self.editTransactionCategoryTextField.resignFirstResponder()
-        }
-        alert.addTextField { textField in
-            textField.textColor = .black
-        }
-        alert.addAction(action)
-        
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel)
-        alert.addAction(cancel)
-        
-        self.present(alert, animated: true, completion: nil)
     }
     
     func addButtonDoneToToolbar() {
@@ -113,9 +79,8 @@ class EditTransactionViewController: UIViewController {
         let newTransaction = Transaction(type: transactionType, value: transactionValue, category: transactionCategory, date: transactionDate)
         
         guard let oldTransaction = currentTransaction else { return }
-        transactionHandler?.updateTotalFunds()
         dismiss(animated: true, completion: {
-            self.editTransactionDelegate?.editTransactionViewController(self, didCreate: newTransaction, didRemove: oldTransaction)
+            self.delegate?.editTransactionViewController(self, didCreate: newTransaction, didRemove: oldTransaction)
         })
     }
 }
@@ -126,15 +91,18 @@ extension EditTransactionViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return categories.container.count
+        guard let categories = containerForCategories else { return 0 }
+        return categories.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return categories.container[row].name
+        guard let categories = containerForCategories else { return "N/A category" }
+        return categories[row].name
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        editTransactionCategoryTextField.text = categories.container[row].name
+        guard let categories = containerForCategories else { return }
+        editTransactionCategoryTextField.text = categories[row].name
     }
 }
 

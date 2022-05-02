@@ -10,7 +10,7 @@ import Foundation
 struct Transaction: Equatable {
     var type: Int
     var value: Float
-    var category: String
+    var category: String?
     var date: Date
     
     var formattedDate: String {

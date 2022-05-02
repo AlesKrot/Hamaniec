@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LastTransactionsTableViewCell: UITableViewCell {
+class TransactionsTableViewCell: UITableViewCell {
     @IBOutlet weak var nameCategoryTransactionLabel: UILabel!
     @IBOutlet weak var imageCategoryTransaction: UIImageView!
     @IBOutlet weak var valueTransactionLabel: UILabel!
