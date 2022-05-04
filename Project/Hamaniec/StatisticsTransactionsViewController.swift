@@ -11,6 +11,11 @@ import CoreData
 class StatisticsTransactionsViewController: UIViewController {
     @IBOutlet weak var periodStatisticsSegmentControl: UISegmentedControl!
     @IBOutlet weak var expensesStatisticsLabel: UILabel!
+    @IBOutlet weak var titleStatisticsLabel: UILabel!
+    
+    private var whiteColorTextViewController = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+    private var backgroundColorViewController = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
+    private var redColorTextViewController = UIColor(red: 249/255, green: 135/255, blue: 112/255, alpha: 1)
     
     private var expenses: Float = 0
     private let date = Date()
@@ -19,9 +24,17 @@ class StatisticsTransactionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Statistics"
+        prepareColorsStatisticsVC()
         dailyExpensesStatistics()
         periodStatisticsSegmentControl.addTarget(self, action: #selector(changeExpensesStatistics), for: .valueChanged)
+    }
+    
+    func prepareColorsStatisticsVC() {
+        self.title = "Statistics"
+        self.view.backgroundColor = backgroundColorViewController
+        titleStatisticsLabel.textColor = whiteColorTextViewController
+        expensesStatisticsLabel.textColor = redColorTextViewController
+        periodStatisticsSegmentControl.tintColor = whiteColorTextViewController
     }
     
     func dailyExpensesStatistics() {

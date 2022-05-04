@@ -21,7 +21,9 @@ protocol EditCategoriesHandler: AnyObject {
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var titleTotalMoneyAmountLabel: UILabel!
     @IBOutlet weak var totalMoneyAmountLabel: UILabel!
+    @IBOutlet weak var titleTotalSpentsAmountLabel: UILabel!
     @IBOutlet weak var totalSpentsAmountLabel: UILabel!
     @IBOutlet weak var lastTransactionsTableView: UITableView! {
         didSet {
@@ -34,6 +36,11 @@ class MainViewController: UIViewController {
     @IBOutlet weak var addTransactionButton: UIButton!
     @IBOutlet weak var categoriesButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
+    
+    private var whiteColorTextViewController = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+    private var backgroundColorViewController = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
+    private var redColorTextViewController = UIColor(red: 249/255, green: 135/255, blue: 112/255, alpha: 1)
+    private var greenColorTextViewController = UIColor(red: 117/255, green: 189/255, blue: 185/255, alpha: 1)
     
     var container: NSPersistentContainer!
     
@@ -55,6 +62,9 @@ class MainViewController: UIViewController {
         transactionManager.updateTotalFunds()
         self.transactionHandlerDelegate = transactionManager
         self.categoriesHandlerDelegate = categoryManager
+        
+        prepareColorsMainVC()
+//        navigationController?.navigationItem.titleView?.tintColor = whiteColorTextViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +79,20 @@ class MainViewController: UIViewController {
             print(error.localizedDescription)
         }
         transactionManager.transactions.sort(by: { $0.date! > $1.date! })
+    }
+    
+    func prepareColorsMainVC() {
+        self.view.backgroundColor = backgroundColorViewController
+        titleTotalMoneyAmountLabel.textColor = whiteColorTextViewController
+        titleTotalSpentsAmountLabel.textColor = whiteColorTextViewController
+        totalSpentsAmountLabel.textColor = redColorTextViewController
+        lastTransactionsTableView.backgroundColor = backgroundColorViewController
+        lastTransactionsTableView.separatorColor = whiteColorTextViewController
+        
+//        statisticsButton.imageView?.tintColor = whiteColorTextViewController
+//        addTransactionButton.imageView?.tintColor = whiteColorTextViewController
+//        categoriesButton.imageView?.tintColor = whiteColorTextViewController
+//        infoButton.imageView?.tintColor = whiteColorTextViewController
     }
     
     @IBAction func didTapStatistics(_ sender: UIButton) {
@@ -106,13 +130,13 @@ extension MainViewController: TransactionManagerDelegate {
         switch funds {
         case 0.01...:
             totalMoneyAmountLabel.text = "+\(fundsToString) BYN"
-            totalMoneyAmountLabel.textColor = .green
+            totalMoneyAmountLabel.textColor = greenColorTextViewController
         case 0:
             totalMoneyAmountLabel.text = "\(fundsToString) BYN"
-            totalMoneyAmountLabel.textColor = .black
+            totalMoneyAmountLabel.textColor = .white
         default:
             totalMoneyAmountLabel.text = "\(fundsToString) BYN"
-            totalMoneyAmountLabel.textColor = .red
+            totalMoneyAmountLabel.textColor = redColorTextViewController
         }
     }
 
@@ -137,14 +161,18 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let currentTransactionCell = transactionManager.transactions[indexPath.row]
         cell?.nameCategoryTransactionLabel.text = currentTransactionCell.category
         if currentTransactionCell.type == 0 {
-            cell?.valueTransactionLabel.textColor = .red
+            cell?.valueTransactionLabel.textColor = redColorTextViewController
             cell?.valueTransactionLabel.text = "-\(currentTransactionCell.formattedValueToString) BYN"
         } else {
-            cell?.valueTransactionLabel.textColor = .green
+            cell?.valueTransactionLabel.textColor = UIColor(red: 117/255, green: 189/255, blue: 185/255, alpha: 1)
             cell?.valueTransactionLabel.text = "+\(currentTransactionCell.formattedValueToString) BYN"
         }
         cell?.dateTransactionLabel.text = currentTransactionCell.formattedDate
-
+        cell?.nameCategoryTransactionLabel.textColor = whiteColorTextViewController
+        cell?.dateTransactionLabel.textColor = whiteColorTextViewController
+        cell?.imageCategoryTransaction.tintColor = whiteColorTextViewController
+        cell?.backgroundColor = backgroundColorViewController
+        
         let valueCategory = currentTransactionCell.category
         var iconCategory = ""
         switch valueCategory {
@@ -212,8 +240,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.frame.size.width, height: ViewConfig.kCellHeight))
         label.font = UIFont.systemFont(ofSize: 25)
         label.text = "Last transactions"
+        label.textColor = whiteColorTextViewController
         view.addSubview(label)
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = backgroundColorViewController
         return view
     }
 

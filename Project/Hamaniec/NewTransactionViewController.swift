@@ -13,11 +13,19 @@ protocol NewTransactionViewContollerDelegate: AnyObject {
 }
 
 class NewTransactionViewController: UIViewController {
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var newTransactionValueTextField: UITextField!
     @IBOutlet weak var newTransactionTypeSegmentControl: UISegmentedControl!
     @IBOutlet weak var newTransactionCategoryTextField: UITextField!
     @IBOutlet weak var newTransactionDateTextField: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
+    
+    private var whiteColorTextViewController = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+    private var backgroundColorViewController = UIColor(red: 53/255, green: 53/255, blue: 53/255, alpha: 1)
+    private var backgroundColorTextField = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 0.5)
+    private var whiteColorTextFieldPlaceholder = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 0.5)
     
     private let categoryPicker = UIPickerView()
     private let datePicker = UIDatePicker()
@@ -30,25 +38,38 @@ class NewTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        newTransactionValueTextField.placeholder = "Write your spent or income"
-        newTransactionValueTextField.delegate = self
+        prepareColorsNewTransactionVC()
         
-        newTransactionCategoryTextField.placeholder = "Category of transaction"
+        newTransactionValueTextField.delegate = self
         newTransactionCategoryTextField.delegate = self
         newTransactionCategoryTextField.inputView = categoryPicker
+        
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
-        
         newTransactionDateTextField.inputView = datePicker
         datePicker.datePickerMode = .dateAndTime
         datePicker.preferredDatePickerStyle = .wheels
         addButtonDoneToToolbar()
-        
         insertDateNow(to: newTransactionDateTextField)
-        
         datePicker.addTarget(self, action: #selector(onDatePickerValueChanged(sender:)), for: .valueChanged)
         
         confirmButton.isEnabled = false
+    }
+    
+    func prepareColorsNewTransactionVC() {
+        self.view.backgroundColor = backgroundColorViewController
+        newTransactionTypeSegmentControl.tintColor = whiteColorTextViewController
+        amountLabel.textColor = whiteColorTextViewController
+        categoryLabel.textColor = whiteColorTextViewController
+        dateLabel.textColor = whiteColorTextViewController
+        newTransactionValueTextField.backgroundColor = backgroundColorTextField
+        newTransactionValueTextField.textColor = whiteColorTextViewController
+        newTransactionValueTextField.attributedPlaceholder = NSAttributedString(string: "Write your spent or income", attributes: [NSAttributedString.Key.foregroundColor: whiteColorTextFieldPlaceholder])
+        newTransactionCategoryTextField.backgroundColor = backgroundColorTextField
+        newTransactionCategoryTextField.textColor = whiteColorTextViewController
+        newTransactionCategoryTextField.attributedPlaceholder = NSAttributedString(string: "Category of transaction", attributes: [NSAttributedString.Key.foregroundColor: whiteColorTextFieldPlaceholder])
+        newTransactionDateTextField.backgroundColor = backgroundColorTextField
+        newTransactionDateTextField.textColor = whiteColorTextViewController
     }
     
     func insertDateNow(to textField: UITextField) {

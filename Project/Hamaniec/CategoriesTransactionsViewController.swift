@@ -21,6 +21,9 @@ class CategoriesTransactionsViewController: UIViewController {
         }
     }
     
+    private var whiteColorTextViewController = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+    private var backgroundColorViewController = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
+    
     var containerForCategories: [Category]?
     weak var delegate: CategoriesTransactionViewControllerDelegate?
     
@@ -28,14 +31,20 @@ class CategoriesTransactionsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.title = "Categories"
+        prepareColorsCategoriesVC()
         addRightBarButtonItem()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         categoriesTableView.reloadData()
+    }
+    
+    func prepareColorsCategoriesVC() {
+        self.view.backgroundColor = backgroundColorViewController
+        categoriesTableView.backgroundColor = backgroundColorViewController
+        categoriesTableView.separatorColor = whiteColorTextViewController
     }
     
     func addRightBarButtonItem() {
@@ -87,6 +96,9 @@ extension CategoriesTransactionsViewController: UITableViewDelegate, UITableView
         let currentCategoryCell = containerForCategories![indexPath.row]
         cell?.nameCategoryLabel.text = currentCategoryCell.name
         cell?.imageCategoryView.image = UIImage(systemName: currentCategoryCell.icon ?? "tag.circle")
+        cell?.nameCategoryLabel.textColor = whiteColorTextViewController
+        cell?.imageCategoryView.tintColor = whiteColorTextViewController
+        cell?.backgroundColor = backgroundColorViewController
         
         return cell!
     }

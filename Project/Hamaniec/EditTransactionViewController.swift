@@ -13,11 +13,18 @@ protocol EditTransactionViewControllerDelegate: AnyObject {
 }
 
 class EditTransactionViewController: UIViewController {
+    @IBOutlet weak var amountLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var editTransactionTypeSegmentControl: UISegmentedControl!
     @IBOutlet weak var editTransactionValueTextField: UITextField!
     @IBOutlet weak var editTransactionCategoryTextField: UITextField!
     @IBOutlet weak var editTransactionDateTextField: UITextField!
     @IBOutlet weak var editButton: UIButton!
+    
+    private var whiteColorTextViewController = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
+    private var backgroundColorViewController = UIColor(red: 53/255, green: 53/255, blue: 53/255, alpha: 1)
+    private var backgroundColorTextField = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 0.5)
     
     var currentTransaction: Transaction?
     weak var delegate: EditTransactionViewControllerDelegate?
@@ -31,6 +38,8 @@ class EditTransactionViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        prepareColorsEditTransactionVC()
+        
         guard let currentTransaction = currentTransaction else { return }
         editTransactionTypeSegmentControl.selectedSegmentIndex = Int(currentTransaction.type)
         editTransactionValueTextField.text = currentTransaction.formattedValueToString
@@ -49,6 +58,20 @@ class EditTransactionViewController: UIViewController {
         selectedDate = currentTransaction.date
         datePicker.addTarget(self, action: #selector(onDatePickerValueChanged(sender:)), for: .valueChanged)
         editButton.isEnabled = false
+    }
+    
+    func prepareColorsEditTransactionVC() {
+        self.view.backgroundColor = backgroundColorViewController
+        editTransactionTypeSegmentControl.tintColor = whiteColorTextViewController
+        amountLabel.textColor = whiteColorTextViewController
+        categoryLabel.textColor = whiteColorTextViewController
+        dateLabel.textColor = whiteColorTextViewController
+        editTransactionValueTextField.backgroundColor = backgroundColorTextField
+        editTransactionValueTextField.textColor = whiteColorTextViewController
+        editTransactionCategoryTextField.backgroundColor = backgroundColorTextField
+        editTransactionCategoryTextField.textColor = whiteColorTextViewController
+        editTransactionDateTextField.backgroundColor = backgroundColorTextField
+        editTransactionDateTextField.textColor = whiteColorTextViewController
     }
     
     func addButtonDoneToToolbar() {

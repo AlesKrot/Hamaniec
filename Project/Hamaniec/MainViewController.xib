@@ -15,6 +15,8 @@
                 <outlet property="infoButton" destination="6Hh-sP-U3a" id="VzV-gT-NP0"/>
                 <outlet property="lastTransactionsTableView" destination="bc6-rT-msc" id="Ggf-2g-krA"/>
                 <outlet property="statisticsButton" destination="pHi-hC-X3Q" id="Msg-bu-lVz"/>
+                <outlet property="titleTotalMoneyAmountLabel" destination="tXU-bK-erQ" id="JEL-p2-61H"/>
+                <outlet property="titleTotalSpentsAmountLabel" destination="UvS-RJ-F50" id="vXc-EL-imZ"/>
                 <outlet property="totalMoneyAmountLabel" destination="GIf-D5-drY" id="SGM-WP-g51"/>
                 <outlet property="totalSpentsAmountLabel" destination="3Xe-gX-hCo" id="nQQ-n9-fIK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="szR-Wh-ysL"/>
@@ -68,7 +70,7 @@
                             </constraints>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemGray2Color"/>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="uQK-Po-8Vo" firstAttribute="centerY" secondItem="jlt-SI-WbV" secondAttribute="centerY" id="DPI-qq-Iay"/>
                         <constraint firstItem="uQK-Po-8Vo" firstAttribute="centerX" secondItem="jlt-SI-WbV" secondAttribute="centerX" id="K0d-cB-MSU"/>
@@ -78,34 +80,37 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total spents:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UvS-RJ-F50">
                     <rect key="frame" x="29.999999999999993" y="134" width="111.33333333333331" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" systemColor="systemYellowColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="248" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Total money:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tXU-bK-erQ">
                     <rect key="frame" x="20" y="74" width="135.33333333333334" height="30"/>
                     <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" systemColor="systemYellowColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GIf-D5-drY">
                     <rect key="frame" x="338.33333333333331" y="74" width="16.666666666666686" height="30"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" systemColor="systemYellowColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bc6-rT-msc">
                     <rect key="frame" x="0.0" y="173" width="375" height="530"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="backgroundColor" systemColor="labelColor"/>
+                    <color key="separatorColor" systemColor="opaqueSeparatorColor"/>
+                    <color key="sectionIndexColor" systemColor="systemYellowColor"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Xe-gX-hCo">
                     <rect key="frame" x="322.66666666666669" y="134" width="12.333333333333314" height="24"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" systemColor="systemYellowColor"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="UvS-RJ-F50" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="0b7-SG-OiD"/>
                 <constraint firstItem="jlt-SI-WbV" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FuC-bT-Uha"/>
@@ -131,11 +136,14 @@
         <image name="highlighter" catalog="system" width="128" height="119"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
