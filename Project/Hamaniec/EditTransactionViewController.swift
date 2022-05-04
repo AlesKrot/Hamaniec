@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import CoreData
 
 protocol EditTransactionViewControllerDelegate: AnyObject {
-    func editTransactionViewController(_ controller: EditTransactionViewController, didCreate: Transaction, didRemove: Transaction)
+    func editTransactionViewController(_ controller: EditTransactionViewController)
 }
 
 class EditTransactionViewController: UIViewController {
@@ -26,10 +27,12 @@ class EditTransactionViewController: UIViewController {
     private let datePicker = UIDatePicker()
     private var selectedDate: Date?
     
+    var container: NSPersistentContainer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let currentTransaction = currentTransaction else { return }
-        editTransactionTypeSegmentControl.selectedSegmentIndex = currentTransaction.type
+        editTransactionTypeSegmentControl.selectedSegmentIndex = Int(currentTransaction.type)
         editTransactionValueTextField.text = currentTransaction.formattedValueToString
         editTransactionCategoryTextField.text = currentTransaction.category
         editTransactionDateTextField.text = currentTransaction.formattedDate
@@ -70,17 +73,24 @@ class EditTransactionViewController: UIViewController {
     }
 
     @IBAction func didTapEditButton(_ sender: UIButton) {
-        print("Button works")
         guard let transactionType = editTransactionTypeSegmentControl?.selectedSegmentIndex,
-              let transactionValue = Float(editTransactionValueTextField.text ?? ""),
+              let transactionValue = editTransactionValueTextField.text,
               let transactionCategory = editTransactionCategoryTextField.text,
               let transactionDate = selectedDate else { return }
         
-        let newTransaction = Transaction(type: transactionType, value: transactionValue, category: transactionCategory, date: transactionDate)
+        currentTransaction?.type = Int16(transactionType)
+        currentTransaction?.value = Float(transactionValue) ?? 0
+        currentTransaction?.category = transactionCategory
+        currentTransaction?.date = transactionDate
         
-        guard let oldTransaction = currentTransaction else { return }
+        let context = container.viewContext
+        do {
+            try context.save()
+        } catch let error as NSError {
+            print("Error While Deleting Note: \(error.userInfo)")
+        }
         dismiss(animated: true, completion: {
-            self.delegate?.editTransactionViewController(self, didCreate: newTransaction, didRemove: oldTransaction)
+            self.delegate?.editTransactionViewController(self)
         })
     }
 }

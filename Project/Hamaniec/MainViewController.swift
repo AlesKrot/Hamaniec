@@ -5,12 +5,11 @@
 //  Created by Ales Krot on 13.04.22.
 //
 
-import Foundation
 import UIKit
+import CoreData
 
 protocol TransactionsHandler: AnyObject {
     func save(transaction: Transaction)
-    func edit(oldTransaction: Transaction, newTransaction: Transaction)
     func remove(at index: Int)
     func updateTotalFunds()
 }
@@ -36,6 +35,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var categoriesButton: UIButton!
     @IBOutlet weak var infoButton: UIButton!
     
+    var container: NSPersistentContainer!
+    
     var transactionManager = TransactionManager()
     let categoryManager = CategoryManager()
     
@@ -44,10 +45,30 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        container = AppDelegate.shared.persistentContainer
+        
+        guard container != nil else {
+            fatalError("This view needs a persistent container.")
+        }
+        
         transactionManager.delegate = self
+        transactionManager.updateTotalFunds()
         self.transactionHandlerDelegate = transactionManager
         self.categoriesHandlerDelegate = categoryManager
-        transactionManager.updateTotalFunds()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let context = container.viewContext
+
+        let fetchRequest: NSFetchRequest<Transaction> = Transaction.fetchRequest()
+
+        do {
+            transactionManager.transactions = try context.fetch(fetchRequest)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        transactionManager.transactions.sort(by: { $0.date! > $1.date! })
     }
     
     @IBAction func didTapStatistics(_ sender: UIButton) {
@@ -61,6 +82,7 @@ class MainViewController: UIViewController {
         newTransactionViewController.modalPresentationStyle = .automatic
         newTransactionViewController.delegate = self
         newTransactionViewController.containerForCategories = categoryManager.container
+        newTransactionViewController.container = container
         present(newTransactionViewController, animated: true)
     }
     
@@ -68,6 +90,7 @@ class MainViewController: UIViewController {
         let categoriesTransactions = CategoriesTransactionsViewController()
         categoriesTransactions.containerForCategories = categoryManager.container
         categoriesTransactions.delegate = self
+        categoriesTransactions.container = container
         navigationController?.pushViewController(categoriesTransactions, animated: true)
     }
     
@@ -158,6 +181,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         editTransactionViewController.modalPresentationStyle = .automatic
         editTransactionViewController.containerForCategories = categoryManager.container
         editTransactionViewController.currentTransaction = selectedTransaction
+        editTransactionViewController.container = container
         present(editTransactionViewController, animated: true)
     }
 
@@ -199,10 +223,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MainViewController: NewTransactionViewContollerDelegate {
-    func newTransactionViewController(_ controller: NewTransactionViewController, didCreate transaction: Transaction) {
-        transactionHandlerDelegate?.save(transaction: transaction)
-        transactionManager.transactions.sort(by: { $0.date > $1.date })
-        guard let index = transactionManager.transactions.firstIndex(of: transaction) else { return }
+    func newTransactionViewController(_ controller: NewTransactionViewController, didCreate: Transaction) {
+        transactionHandlerDelegate?.save(transaction: didCreate)
+        guard let index = transactionManager.transactions.firstIndex(of: didCreate) else { return }
         let indexPath = IndexPath(row: index, section: 0)
         lastTransactionsTableView.insertRows(at: [indexPath], with: .fade)
         transactionHandlerDelegate?.updateTotalFunds()
@@ -210,9 +233,7 @@ extension MainViewController: NewTransactionViewContollerDelegate {
 }
 
 extension MainViewController: EditTransactionViewControllerDelegate {
-    func editTransactionViewController(_ controller: EditTransactionViewController, didCreate: Transaction, didRemove: Transaction) {
-        transactionHandlerDelegate?.edit(oldTransaction: didRemove, newTransaction: didCreate)
-        transactionManager.transactions.sort(by: { $0.date > $1.date })
+    func editTransactionViewController(_ controller: EditTransactionViewController) {
         transactionHandlerDelegate?.updateTotalFunds()
         lastTransactionsTableView.reloadData()
     }

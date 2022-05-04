@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 protocol CategoriesTransactionViewControllerDelegate: AnyObject {
     func categoriesTransactionViewController(_ controller: CategoriesTransactionsViewController, add category: Category)
@@ -22,6 +23,8 @@ class CategoriesTransactionsViewController: UIViewController {
     
     var containerForCategories: [Category]?
     weak var delegate: CategoriesTransactionViewControllerDelegate?
+    
+    var container: NSPersistentContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()

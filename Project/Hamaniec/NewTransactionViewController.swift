@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import CoreData
 
 protocol NewTransactionViewContollerDelegate: AnyObject {
-    func newTransactionViewController(_ controller: NewTransactionViewController, didCreate transaction: Transaction)
+    func newTransactionViewController(_ controller: NewTransactionViewController, didCreate: Transaction)
 }
 
 class NewTransactionViewController: UIViewController {
@@ -24,6 +25,8 @@ class NewTransactionViewController: UIViewController {
     
     var containerForCategories: [Category]?
     weak var delegate: NewTransactionViewContollerDelegate?
+    
+    var container: NSPersistentContainer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,35 +83,23 @@ class NewTransactionViewController: UIViewController {
     
     @IBAction func didTapConfirmButton(_ sender: UIButton) {
         guard let transactionType = newTransactionTypeSegmentControl?.selectedSegmentIndex,
-              let transactionValue = Float(newTransactionValueTextField.text ?? ""),
+              let transactionValue = newTransactionValueTextField.text,
               let transactionCategory = newTransactionCategoryTextField.text,
               let transactionDate = selectedDate else { return }
         
-        let transaction = Transaction(type: transactionType, value: transactionValue, category: transactionCategory, date: transactionDate)
+        let context = container.viewContext
+        let transactionObject = Transaction(context: context)
+    
+        transactionObject.type = Int16(transactionType)
+        transactionObject.value = Float(transactionValue) ?? 0
+        transactionObject.category = transactionCategory
+        transactionObject.date = transactionDate
+        
         dismiss(animated: true, completion: {
-            self.delegate?.newTransactionViewController(self, didCreate: transaction)
+            self.delegate?.newTransactionViewController(self, didCreate: transactionObject)
         })
-//        do {
-//            try handleFundsTextField(text: newTransactionValueTextField?.text)
-//            dismiss(animated: true)
-//        } catch {
-//            if let error = error as? TransactionManagerError {
-//                switch error {
-//                case .insufficientFunds:
-//                    showAlert(with: "Error", body: "Insufficient funds")
-//                case .insufficientCreditFunds:
-//                    showAlert(with: "Error", body: "Insufficient credit funds")
-//                }
-//            } else {
-//                showAlert(with: "Error", body: "Wrong value! Please, try again.")
-//            }
-//        }
     }
 }
-
-//enum NewTransactionControllerError: Error {
-//    case wrongValue
-//}
 
 extension NewTransactionViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

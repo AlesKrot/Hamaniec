@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E14F99E5282120C000191CDC /* Hamaniec.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E14F99E3282120C000191CDC /* Hamaniec.xcdatamodeld */; };
+		E14F99EF2821449900191CDC /* PersistentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E14F99EE2821449900191CDC /* PersistentContainer.swift */; };
 		E157330E280738A500F58E0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157330D280738A500F58E0A /* AppDelegate.swift */; };
 		E1573310280738A500F58E0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E157330F280738A500F58E0A /* SceneDelegate.swift */; };
 		E1573312280738A500F58E0A /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1573311280738A500F58E0A /* MainViewController.swift */; };
@@ -25,10 +27,10 @@
 		E16CA179281B42EF00843E84 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E16CA177281B42EF00843E84 /* CategoryTableViewCell.xib */; };
 		E16CA17C281FE47500843E84 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E16CA17A281FE47400843E84 /* InfoViewController.swift */; };
 		E16CA17D281FE47500843E84 /* InfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E16CA17B281FE47400843E84 /* InfoViewController.xib */; };
+		E173652528215FAE00096252 /* Transaction+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E173652328215FAE00096252 /* Transaction+CoreDataClass.swift */; };
 		E1B7B41F28102154006930B3 /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B41E28102154006930B3 /* TransactionManager.swift */; };
 		E1B7B422281026BC006930B3 /* NewTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B420281026BC006930B3 /* NewTransactionViewController.swift */; };
 		E1B7B423281026BC006930B3 /* NewTransactionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1B7B421281026BC006930B3 /* NewTransactionViewController.xib */; };
-		E1B7B42528107C61006930B3 /* Transaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B7B42428107C61006930B3 /* Transaction.swift */; };
 		E1DFCC59281498E5009293BD /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFCC58281498E5009293BD /* Category.swift */; };
 		E1DFCC5D2814A5E6009293BD /* TransactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1DFCC5B2814A5E6009293BD /* TransactionsTableViewCell.swift */; };
 		E1DFCC5E2814A5E6009293BD /* TransactionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1DFCC5C2814A5E6009293BD /* TransactionsTableViewCell.xib */; };
@@ -55,6 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E14F99E4282120C000191CDC /* Hamaniec.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Hamaniec.xcdatamodel; sourceTree = "<group>"; };
+		E14F99EE2821449900191CDC /* PersistentContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentContainer.swift; sourceTree = "<group>"; };
 		E157330A280738A500F58E0A /* Hamaniec.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hamaniec.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E157330D280738A500F58E0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E157330F280738A500F58E0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -77,10 +81,10 @@
 		E16CA177281B42EF00843E84 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		E16CA17A281FE47400843E84 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		E16CA17B281FE47400843E84 /* InfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoViewController.xib; sourceTree = "<group>"; };
+		E173652328215FAE00096252 /* Transaction+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transaction+CoreDataClass.swift"; sourceTree = "<group>"; };
 		E1B7B41E28102154006930B3 /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
 		E1B7B420281026BC006930B3 /* NewTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionViewController.swift; sourceTree = "<group>"; };
 		E1B7B421281026BC006930B3 /* NewTransactionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewTransactionViewController.xib; sourceTree = "<group>"; };
-		E1B7B42428107C61006930B3 /* Transaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transaction.swift; sourceTree = "<group>"; };
 		E1DFCC58281498E5009293BD /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E1DFCC5B2814A5E6009293BD /* TransactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsTableViewCell.swift; sourceTree = "<group>"; };
 		E1DFCC5C2814A5E6009293BD /* TransactionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionsTableViewCell.xib; sourceTree = "<group>"; };
@@ -114,6 +118,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E14F99E22821209600191CDC /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				E14F99EE2821449900191CDC /* PersistentContainer.swift */,
+				E173652328215FAE00096252 /* Transaction+CoreDataClass.swift */,
+				E14F99E3282120C000191CDC /* Hamaniec.xcdatamodeld */,
+			);
+			name = CoreData;
+			path = ../CoreData;
+			sourceTree = "<group>";
+		};
 		E1573301280738A500F58E0A = {
 			isa = PBXGroup;
 			children = (
@@ -157,6 +172,7 @@
 				E16CA17A281FE47400843E84 /* InfoViewController.swift */,
 				E16CA17B281FE47400843E84 /* InfoViewController.xib */,
 				E1DFCC5A28149FEE009293BD /* Model */,
+				E14F99E22821209600191CDC /* CoreData */,
 				E1573316280738A600F58E0A /* Assets.xcassets */,
 				E1573318280738A600F58E0A /* LaunchScreen.storyboard */,
 				E157331B280738A600F58E0A /* Info.plist */,
@@ -184,7 +200,6 @@
 		E1DFCC5A28149FEE009293BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E1B7B42428107C61006930B3 /* Transaction.swift */,
 				E1DFCC58281498E5009293BD /* Category.swift */,
 				E16CA174281B3E8A00843E84 /* CategoryManager.swift */,
 				E1B7B41E28102154006930B3 /* TransactionManager.swift */,
@@ -332,7 +347,9 @@
 			files = (
 				E1B7B41F28102154006930B3 /* TransactionManager.swift in Sources */,
 				E1573312280738A500F58E0A /* MainViewController.swift in Sources */,
-				E1B7B42528107C61006930B3 /* Transaction.swift in Sources */,
+				E14F99EF2821449900191CDC /* PersistentContainer.swift in Sources */,
+				E173652528215FAE00096252 /* Transaction+CoreDataClass.swift in Sources */,
+				E14F99E5282120C000191CDC /* Hamaniec.xcdatamodeld in Sources */,
 				E16CA175281B3E8A00843E84 /* CategoryManager.swift in Sources */,
 				E1B7B422281026BC006930B3 /* NewTransactionViewController.swift in Sources */,
 				E16CA178281B42EF00843E84 /* CategoryTableViewCell.swift in Sources */,
@@ -676,6 +693,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E14F99E3282120C000191CDC /* Hamaniec.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E14F99E4282120C000191CDC /* Hamaniec.xcdatamodel */,
+			);
+			currentVersion = E14F99E4282120C000191CDC /* Hamaniec.xcdatamodel */;
+			path = Hamaniec.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E1573302280738A500F58E0A /* Project object */;
 }

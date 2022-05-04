@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class StatisticsTransactionsViewController: UIViewController {
     @IBOutlet weak var periodStatisticsSegmentControl: UISegmentedControl!
@@ -39,7 +40,8 @@ class StatisticsTransactionsViewController: UIViewController {
         let spentTransactionArray = containerForTransactions!.filter{ $0.type == 0 }
 
         for transaction in spentTransactionArray {
-            if transaction.date >= startDay {
+            guard let date = transaction.date else { return }
+            if date >= startDay {
                 expenses += transaction.value
             }
         }
@@ -65,10 +67,12 @@ class StatisticsTransactionsViewController: UIViewController {
             let spentTransactionArray = containerForTransactions!.filter{ $0.type == 0 }
             
             for transaction in spentTransactionArray {
-                if transaction.date >= startDay {
+                guard let date = transaction.date else { return }
+                if date >= startDay {
                     expenses += transaction.value
                 }
             }
+            expensesStatisticsLabel.text = String(format: "-%.2f BYN", expenses)
         } else if periodStatisticsSegmentControl.selectedSegmentIndex == 1 {
             var dateComponentsOfWeek = DateComponents()
             dateComponentsOfWeek.hour = 00
@@ -81,10 +85,12 @@ class StatisticsTransactionsViewController: UIViewController {
             let spentTransactionArray = containerForTransactions!.filter{ $0.type == 0 }
             
             for transaction in spentTransactionArray {
-                if transaction.date >= startWeek {
+                guard let date = transaction.date else { return }
+                if date >= startWeek {
                     expenses += transaction.value
                 }
             }
+            expensesStatisticsLabel.text = String(format: "-%.2f BYN", expenses)
         } else if periodStatisticsSegmentControl.selectedSegmentIndex == 2 {
             var dateComponentsOfMonth = DateComponents()
             dateComponentsOfMonth.hour = 00
@@ -97,10 +103,12 @@ class StatisticsTransactionsViewController: UIViewController {
             let spentTransactionArray = containerForTransactions!.filter{ $0.type == 0 }
             
             for transaction in spentTransactionArray {
-                if transaction.date >= startMonth {
+                guard let date = transaction.date else { return }
+                if date >= startMonth {
                     expenses += transaction.value
                 }
             }
+            expensesStatisticsLabel.text = String(format: "-%.2f BYN", expenses)
         } else if periodStatisticsSegmentControl.selectedSegmentIndex == 3 {
             var dateComponentsOfYear = DateComponents()
             dateComponentsOfYear.hour = 00
@@ -113,12 +121,13 @@ class StatisticsTransactionsViewController: UIViewController {
             let spentTransactionArray = containerForTransactions!.filter{ $0.type == 0 }
             
             for transaction in spentTransactionArray {
-                if transaction.date >= startYear {
+                guard let date = transaction.date else { return }
+                if date >= startYear {
                     expenses += transaction.value
                 }
             }
+            expensesStatisticsLabel.text = String(format: "-%.2f BYN", expenses)
         }
-        expensesStatisticsLabel.text = String(format: "-%.2f BYN", expenses)
         expenses = 0
     }
 }

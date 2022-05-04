@@ -5,7 +5,6 @@
 //  Created by Ales Krot on 29.04.22.
 //
 
-import Foundation
 import UIKit
 
 class CategoryManager: EditCategoriesHandler {

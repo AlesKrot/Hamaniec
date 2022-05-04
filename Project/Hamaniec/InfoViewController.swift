@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import CoreData
 
 class InfoViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
