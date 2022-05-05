@@ -70,7 +70,6 @@ class TransactionManager: TransactionsHandler {
     }
     
     func save(transaction: Transaction) {
-        //    func save(type: Int16, value: Float, category: String, date: Date) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
         
@@ -82,24 +81,6 @@ class TransactionManager: TransactionsHandler {
         transactions.append(transaction)
         transactions.sort(by: { $0.date! > $1.date! })
     }
-    
-//    func edit(oldTransaction: Transaction, newTransaction: Transaction) {
-//    func edit(oldTransaction: Transaction, newTransaction: Transaction) {
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let context = appDelegate.persistentContainer.viewContext
-//
-////                guard let entity = NSEntityDescription.entity(forEntityName: "Transaction", in: context) else { return }
-////                let transactionObject = Transaction(entity: entity, insertInto: context)
-//
-//        context.delete(oldTransaction)
-//        do {
-//            try context.save()
-//        } catch let error as NSError {
-//            print("Error While Deleting Note: \(error.userInfo)")
-//        }
-////        guard let index = transactions.firstIndex(of: oldTransaction) else { return }
-////        transactions[index] = newTransaction
-//    }
     
     func remove(at index: Int) {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

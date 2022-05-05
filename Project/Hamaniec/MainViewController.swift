@@ -57,14 +57,12 @@ class MainViewController: UIViewController {
         guard container != nil else {
             fatalError("This view needs a persistent container.")
         }
+        prepareColorsMainVC()
         
         transactionManager.delegate = self
         transactionManager.updateTotalFunds()
         self.transactionHandlerDelegate = transactionManager
         self.categoriesHandlerDelegate = categoryManager
-        
-        prepareColorsMainVC()
-//        navigationController?.navigationItem.titleView?.tintColor = whiteColorTextViewController
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,7 +79,8 @@ class MainViewController: UIViewController {
         transactionManager.transactions.sort(by: { $0.date! > $1.date! })
     }
     
-    func prepareColorsMainVC() {
+    private func prepareColorsMainVC() {
+        self.title = "Hamaniec"
         self.view.backgroundColor = backgroundColorViewController
         titleTotalMoneyAmountLabel.textColor = whiteColorTextViewController
         titleTotalSpentsAmountLabel.textColor = whiteColorTextViewController
@@ -239,7 +238,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: ViewConfig.kCellHeight))
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.frame.size.width, height: ViewConfig.kCellHeight))
         label.font = UIFont.systemFont(ofSize: 25)
-        label.text = "Last transactions"
+        label.text = "Last transactions:"
         label.textColor = whiteColorTextViewController
         view.addSubview(label)
         view.backgroundColor = backgroundColorViewController

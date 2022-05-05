@@ -25,6 +25,7 @@ class EditTransactionViewController: UIViewController {
     private var whiteColorTextViewController = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
     private var backgroundColorViewController = UIColor(red: 53/255, green: 53/255, blue: 53/255, alpha: 1)
     private var backgroundColorTextField = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 0.5)
+    private var backgroundColorSegmentColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
     
     var currentTransaction: Transaction?
     weak var delegate: EditTransactionViewControllerDelegate?
@@ -60,9 +61,10 @@ class EditTransactionViewController: UIViewController {
         editButton.isEnabled = false
     }
     
-    func prepareColorsEditTransactionVC() {
+    private func prepareColorsEditTransactionVC() {
         self.view.backgroundColor = backgroundColorViewController
         editTransactionTypeSegmentControl.tintColor = whiteColorTextViewController
+        editTransactionTypeSegmentControl.backgroundColor = backgroundColorSegmentColor
         amountLabel.textColor = whiteColorTextViewController
         categoryLabel.textColor = whiteColorTextViewController
         dateLabel.textColor = whiteColorTextViewController
@@ -74,7 +76,7 @@ class EditTransactionViewController: UIViewController {
         editTransactionDateTextField.textColor = whiteColorTextViewController
     }
     
-    func addButtonDoneToToolbar() {
+    private func addButtonDoneToToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))

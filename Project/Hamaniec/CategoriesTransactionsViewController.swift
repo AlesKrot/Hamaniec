@@ -41,13 +41,13 @@ class CategoriesTransactionsViewController: UIViewController {
         categoriesTableView.reloadData()
     }
     
-    func prepareColorsCategoriesVC() {
+    private func prepareColorsCategoriesVC() {
         self.view.backgroundColor = backgroundColorViewController
         categoriesTableView.backgroundColor = backgroundColorViewController
         categoriesTableView.separatorColor = whiteColorTextViewController
     }
     
-    func addRightBarButtonItem() {
+    private func addRightBarButtonItem() {
         let rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addBarButtonItem))
         self.navigationItem.rightBarButtonItem = rightBarButtonItem
     }
@@ -56,7 +56,7 @@ class CategoriesTransactionsViewController: UIViewController {
         alertAddCategory()
     }
     
-    func alertAddCategory() {
+    private func alertAddCategory() {
         let alert = UIAlertController(title: "Add", message: "Write new category in text field", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { _ in
             let textField = alert.textFields![0] as UITextField

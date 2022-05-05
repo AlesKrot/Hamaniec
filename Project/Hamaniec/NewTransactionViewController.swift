@@ -26,6 +26,7 @@ class NewTransactionViewController: UIViewController {
     private var backgroundColorViewController = UIColor(red: 53/255, green: 53/255, blue: 53/255, alpha: 1)
     private var backgroundColorTextField = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 0.5)
     private var whiteColorTextFieldPlaceholder = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 0.5)
+    private var backgroundColorSegmentColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
     
     private let categoryPicker = UIPickerView()
     private let datePicker = UIDatePicker()
@@ -56,9 +57,10 @@ class NewTransactionViewController: UIViewController {
         confirmButton.isEnabled = false
     }
     
-    func prepareColorsNewTransactionVC() {
+    private func prepareColorsNewTransactionVC() {
         self.view.backgroundColor = backgroundColorViewController
         newTransactionTypeSegmentControl.tintColor = whiteColorTextViewController
+        newTransactionTypeSegmentControl.backgroundColor = backgroundColorSegmentColor
         amountLabel.textColor = whiteColorTextViewController
         categoryLabel.textColor = whiteColorTextViewController
         dateLabel.textColor = whiteColorTextViewController
@@ -72,7 +74,7 @@ class NewTransactionViewController: UIViewController {
         newTransactionDateTextField.textColor = whiteColorTextViewController
     }
     
-    func insertDateNow(to textField: UITextField) {
+    private func insertDateNow(to textField: UITextField) {
         selectedDate = Date(timeIntervalSinceNow: 0)
         guard let date = selectedDate else { return }
         let dateFormatter = DateFormatter()
@@ -81,7 +83,7 @@ class NewTransactionViewController: UIViewController {
         textField.text = dateString
     }
     
-    func addButtonDoneToToolbar() {
+    private func addButtonDoneToToolbar() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         let done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))

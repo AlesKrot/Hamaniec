@@ -16,6 +16,7 @@ class StatisticsTransactionsViewController: UIViewController {
     private var whiteColorTextViewController = UIColor(red: 242/255, green: 242/255, blue: 242/255, alpha: 1)
     private var backgroundColorViewController = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1)
     private var redColorTextViewController = UIColor(red: 249/255, green: 135/255, blue: 112/255, alpha: 1)
+    private var backgroundColorSegmentColor = UIColor(red: 65/255, green: 65/255, blue: 65/255, alpha: 1)
     
     private var expenses: Float = 0
     private let date = Date()
@@ -29,15 +30,16 @@ class StatisticsTransactionsViewController: UIViewController {
         periodStatisticsSegmentControl.addTarget(self, action: #selector(changeExpensesStatistics), for: .valueChanged)
     }
     
-    func prepareColorsStatisticsVC() {
+    private func prepareColorsStatisticsVC() {
         self.title = "Statistics"
         self.view.backgroundColor = backgroundColorViewController
         titleStatisticsLabel.textColor = whiteColorTextViewController
         expensesStatisticsLabel.textColor = redColorTextViewController
         periodStatisticsSegmentControl.tintColor = whiteColorTextViewController
+        periodStatisticsSegmentControl.backgroundColor = backgroundColorSegmentColor
     }
     
-    func dailyExpensesStatistics() {
+    private func dailyExpensesStatistics() {
         let currentDay = calendar.component(.day, from: date)
         let currentMonth = calendar.component(.month, from: date)
         let currentYear = calendar.component(.year, from: date)
